@@ -51,4 +51,8 @@ public class Database {
         WatchlistMovieEntity watchlistMovieEntity = new WatchlistMovieEntity("Mensch","Hat Beine","Sport, Schach", 1290,"einLink",69,10);
         dao.create(watchlistMovieEntity);
     }
+
+    public Dao<WatchlistMovieEntity, Long> getDao() {
+        return dao;
+    }
 }
