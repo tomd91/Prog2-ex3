@@ -4,6 +4,7 @@ import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class WatchlistRepository {
     Dao<WatchlistMovieEntity, Long> dao;
@@ -13,7 +14,23 @@ public class WatchlistRepository {
     }
 
     public void addMovie(Movie movie) throws SQLException {
-        WatchlistMovieEntity movieToAdd = new WatchlistMovieEntity(
+        dao.create(castMovieToWatchlistMovieEntity(movie));
+    }
+
+    public void removeMovie(Movie movie) throws SQLException {
+        dao.delete(castMovieToWatchlistMovieEntity(movie));
+    }
+
+    public void removeWatchlistMovieEntities(WatchlistMovieEntity watchlistMovieEntity) throws SQLException {
+        dao.delete(watchlistMovieEntity);
+    }
+
+    public List<WatchlistMovieEntity> watchlistMovieEntities() throws SQLException {
+        return dao.queryForAll();
+    }
+
+    private WatchlistMovieEntity castMovieToWatchlistMovieEntity(Movie movie) {
+        return new WatchlistMovieEntity(
                 movie.getTitle(),
                 movie.getDescription(),
                 movie.getGenresAssString(),
@@ -22,17 +39,5 @@ public class WatchlistRepository {
                 movie.getLengthInMinutes(),
                 movie.getRating()
         );
-
-        dao.create(movieToAdd);
     }
-
-    public void removeMovie() {
-        return;
-    }
-
-    public Movie[] getMovies() {
-        return new Movie[]{};
-    }
-
-
 }
