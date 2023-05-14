@@ -56,7 +56,8 @@ public class MainViewController {
         try {
             mainPane.setCenter(fxmlLoader.load());
         } catch (IOException e) {
-            System.out.println("error - content page not found ");
+            System.out.println("error - url not found ");
+            System.out.println(e);
         }
     }
 

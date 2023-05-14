@@ -5,6 +5,7 @@ import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WatchlistRepository {
@@ -39,12 +40,12 @@ public class WatchlistRepository {
 
     }
 
-    public List<WatchlistMovieEntity> getAllWatchlistMovieEntities() throws DatabaseException {
-        try {
-            return dao.queryForAll();
-        } catch (SQLException e) {
-            throw new DatabaseException("Failed to get all watchlist movie entities from database: " + e.getMessage());
-        }
+   public List<WatchlistMovieEntity> getAllWatchlistMovieEntities() throws SQLException {
+        List<WatchlistMovieEntity> watchlistMovieEntityList = new ArrayList<>();
+
+        watchlistMovieEntityList.addAll(dao.queryForAll());
+
+        return watchlistMovieEntityList;
     }
 
     private WatchlistMovieEntity castMovieToWatchlistMovieEntity(Movie movie) {
