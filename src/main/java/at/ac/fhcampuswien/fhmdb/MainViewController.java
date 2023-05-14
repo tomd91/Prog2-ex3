@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -21,6 +22,9 @@ public class MainViewController {
 
     @FXML
     public BorderPane mainPane;
+
+    @FXML
+    public Label errorLabel;
 
 
 
