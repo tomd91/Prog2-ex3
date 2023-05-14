@@ -155,6 +155,6 @@ public class Movie {
     }
 
     public String getGenresAssString() {
-        return "Noch schreiben!";
+        return "mach ich morgen";
     }
 }
