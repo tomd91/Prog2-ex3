@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien.fhmdb.database;
 
+import at.ac.fhcampuswien.fhmdb.exceptions.DatabaseException;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.j256.ormlite.dao.Dao;
 
@@ -10,23 +11,36 @@ import java.util.List;
 public class WatchlistRepository {
     Dao<WatchlistMovieEntity, Long> dao;
 
-    public void ContactRepository() {
+    public void ContactRepository() throws DatabaseException {
         this.dao = Database.getDatabese().getDao();
     }
 
-    public void addMovie(Movie movie) throws SQLException {
-        dao.create(castMovieToWatchlistMovieEntity(movie));
+    public void addMovie(Movie movie) throws DatabaseException {
+        try {
+            dao.create(castMovieToWatchlistMovieEntity(movie));
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to add movie to database: " + e.getMessage());
+        }
     }
 
-    public void removeMovie(Movie movie) throws SQLException {
-        dao.delete(castMovieToWatchlistMovieEntity(movie));
+    public void removeMovie(Movie movie) throws DatabaseException {
+        try {
+            dao.delete(castMovieToWatchlistMovieEntity(movie));
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to remove movie from database: " + e.getMessage());
+        }
     }
 
-    public void removeWatchlistMovieEntities(WatchlistMovieEntity watchlistMovieEntity) throws SQLException {
-        dao.delete(watchlistMovieEntity);
+    public void removeWatchlistMovieEntities(WatchlistMovieEntity watchlistMovieEntity) throws DatabaseException {
+        try {
+            dao.delete(watchlistMovieEntity);
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to remove movie from database: " + e.getMessage());
+        }
+
     }
 
-    public List<WatchlistMovieEntity> getAllWatchlistMovieEntities() throws SQLException {
+   public List<WatchlistMovieEntity> getAllWatchlistMovieEntities() throws SQLException {
         List<WatchlistMovieEntity> watchlistMovieEntityList = new ArrayList<>();
 
         watchlistMovieEntityList.addAll(dao.queryForAll());
