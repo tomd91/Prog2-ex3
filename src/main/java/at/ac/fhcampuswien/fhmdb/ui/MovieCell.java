@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien.fhmdb.ui;
 
 import at.ac.fhcampuswien.fhmdb.database.WatchlistRepository;
+import at.ac.fhcampuswien.fhmdb.exceptions.DatabaseException;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.jfoenix.controls.JFXButton;
 import javafx.geometry.Insets;
@@ -27,7 +28,7 @@ public class MovieCell extends ListCell<Movie> {
 
     private boolean notAddedToWatchlist = true;
 
-    public MovieCell() {
+    public MovieCell() throws DatabaseException {
         super();
         watchlistRepository.ContactRepository();
         // color scheme
@@ -69,7 +70,7 @@ public class MovieCell extends ListCell<Movie> {
 
                 try {
                     watchlistRepository.addMovie(getItem());
-                } catch (SQLException e) {
+                } catch (DatabaseException e) {
                     throw new RuntimeException(e);
                 }
             }

@@ -1,5 +1,7 @@
 package at.ac.fhcampuswien.fhmdb;
 
+import at.ac.fhcampuswien.fhmdb.exceptions.DatabaseException;
+import at.ac.fhcampuswien.fhmdb.exceptions.MovieApiException;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,4 +59,15 @@ public class MainViewController {
             System.out.println("error - content page not found ");
         }
     }
+
+    public void setErrorLabel(Exception e){
+        if (e instanceof DatabaseException) {
+            errorLabel.setText(((DatabaseException) e).getMessage());
+        } else if (e instanceof MovieApiException) {
+            errorLabel.setText(((MovieApiException) e).getMessage());
+        } else {
+            errorLabel.setText("An error has occurred.");
+        }
+    }
+
 }
