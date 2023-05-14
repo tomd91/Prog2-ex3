@@ -11,21 +11,21 @@ import java.util.List;
 public class WatchlistMovieEntity {
 
     @DatabaseField(generatedId = true)
-    private long id;
+    public long id;
     @DatabaseField()
-    private String title;
+    public String title;
     @DatabaseField()
-    private  String description;
+    public  String description;
     @DatabaseField()
-    private  String genres;
+    public  String genres;
     @DatabaseField()
-    private  int releaseYear;
+    public  int releaseYear;
     @DatabaseField()
-    private  String imgUrl;
+    public  String imgUrl;
     @DatabaseField()
-    private  int lengthInMinutes; // in minutes
+    public  int lengthInMinutes; // in minutes
     @DatabaseField()
-    private double rating; // 0-10
+    public double rating; // 0-10
 
     public WatchlistMovieEntity(){};
 
