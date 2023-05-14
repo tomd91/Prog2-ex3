@@ -20,6 +20,8 @@ public class MovieCellWatchlist extends ListCell<Movie> {
     private final VBox layout = new VBox(title, detail, genre, watchlistBtn);
     private boolean collapsedDetails = true;
 
+    private Movie movie;
+
     private boolean AddedToWatchlist = true;
 
     public MovieCellWatchlist() {
@@ -76,6 +78,8 @@ public class MovieCellWatchlist extends ListCell<Movie> {
     @Override
     protected void updateItem(Movie movie, boolean empty) {
         super.updateItem(movie, empty);
+
+        this.movie = movie;
 
         if (empty || movie == null) {
             setGraphic(null);
