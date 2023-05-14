@@ -17,13 +17,17 @@ public class MovieCell extends ListCell<Movie> {
     private final Label detail = new Label();
     private final Label genre = new Label();
     private final JFXButton detailBtn = new JFXButton("Show Details");
-    private final VBox layout = new VBox(title, detail, genre, detailBtn);
+    private final JFXButton watchlistBtn = new JFXButton("Watchlist");
+    private final VBox layout = new VBox(title, detail, genre, watchlistBtn, detailBtn);
     private boolean collapsedDetails = true;
+
+    private boolean notAddedToWatchlist = true;
 
     public MovieCell() {
         super();
         // color scheme
         detailBtn.setStyle("-fx-background-color: #f5c518;");
+        watchlistBtn.setStyle("-fx-background-color: #f5c518;");
         title.getStyleClass().add("text-yellow");
         detail.getStyleClass().add("text-white");
         genre.getStyleClass().add("text-white");
@@ -43,11 +47,19 @@ public class MovieCell extends ListCell<Movie> {
                 collapsedDetails = false;
                 detailBtn.setText("Hide Details");
             } else {
-                layout.getChildren().remove(4);
+                layout.getChildren().remove(5);
                 collapsedDetails = true;
                 detailBtn.setText("Show Details");
             }
             setGraphic(layout);
+        });
+
+        watchlistBtn.setOnMouseClicked(mouseEvent -> {
+            if (notAddedToWatchlist) {
+                //add movie to watchlist
+                notAddedToWatchlist = false;
+                watchlistBtn.setText("Added to Watchlist");
+            }
         });
     }
 
