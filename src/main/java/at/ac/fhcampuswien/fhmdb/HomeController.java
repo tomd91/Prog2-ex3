@@ -12,9 +12,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.function.Function;
@@ -42,14 +44,6 @@ public class HomeController implements Initializable {
     @FXML
     public JFXButton sortBtn;
 
-    @FXML
-    public JFXButton homeBtn;
-
-    @FXML
-    public JFXButton watchlistBtn;
-
-    @FXML
-    public JFXButton aboutBtn;
 
     public List<Movie> allMovies;
 
@@ -253,18 +247,4 @@ public class HomeController implements Initializable {
                 .collect(Collectors.toList());
     }
 
-    public void homeBtnClicked(ActionEvent actionEvent) {
-
-        System.out.println("home button clicked");
-    }
-
-    public void watchlistBtnClicked(ActionEvent actionEvent) {
-
-        System.out.println("watchlist button clicked");
-    }
-
-    public void aboutBtnClicked(ActionEvent actionEvent) {
-
-        System.out.println("about button clicked");
-    }
 }

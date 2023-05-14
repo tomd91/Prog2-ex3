@@ -21,29 +21,6 @@
             </padding>
          </Label>
          <Label styleClass="text-white" stylesheets="@styles.css" text="Welcome to FHMDb!" />
-         <AnchorPane prefHeight="200.0" prefWidth="400.0">
-            <children>
-               <HBox prefHeight="30.0" prefWidth="400.0" spacing="10.0">
-                  <children>
-                     <JFXButton mnemonicParsing="false" fx:id="homeBtn" onAction="#homeBtnClicked" prefWidth="300.0" styleClass="background-yellow" text="Home">
-                        <HBox.margin>
-                           <Insets />
-                        </HBox.margin></JFXButton>
-                     <JFXButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" fx:id="watchlistBtn" onAction="#watchlistBtnClicked" prefWidth="300.0" styleClass="background-yellow" text="Watchlist" />
-                     <JFXButton layoutX="62.0" layoutY="10.0" mnemonicParsing="false" fx:id="aboutBtn" onAction="#aboutBtnClicked" prefWidth="300.0" styleClass="background-yellow" text="About">
-                        <HBox.margin>
-                           <Insets />
-                        </HBox.margin></JFXButton>
-                  </children>
-                  <padding>
-                     <Insets left="20.0" />
-                  </padding>
-               </HBox>
-            </children>
-            <HBox.margin>
-               <Insets left="125.0" />
-            </HBox.margin>
-         </AnchorPane>
       </children>
    </HBox>
    <HBox spacing="5.0" styleClass="background-black" stylesheets="@styles.css">
