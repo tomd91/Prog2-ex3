@@ -1,6 +1,5 @@
 package at.ac.fhcampuswien.fhmdb.ui;
 
-import at.ac.fhcampuswien.fhmdb.database.WatchlistRepository;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.jfoenix.controls.JFXButton;
 import javafx.geometry.Insets;
@@ -13,25 +12,19 @@ import javafx.scene.paint.Color;
 
 import java.util.stream.Collectors;
 
-public class MovieCell extends ListCell<Movie> {
+public class MovieCellWatchlist extends ListCell<Movie> {
     private final Label title = new Label();
     private final Label detail = new Label();
     private final Label genre = new Label();
-    private final JFXButton detailBtn = new JFXButton("Show Details");
     private final JFXButton watchlistBtn = new JFXButton("Watchlist");
-    private final VBox layout = new VBox(title, detail, genre, watchlistBtn, detailBtn);
+    private final VBox layout = new VBox(title, detail, genre, watchlistBtn);
     private boolean collapsedDetails = true;
 
+    private boolean AddedToWatchlist = true;
 
-    private WatchlistRepository watchlistRepository = new WatchlistRepository();
-
-    private boolean notAddedToWatchlist = true;
-
-    public MovieCell() {
+    public MovieCellWatchlist() {
         super();
-        watchlistRepository.ContactRepository();
         // color scheme
-        detailBtn.setStyle("-fx-background-color: #f5c518;");
         watchlistBtn.setStyle("-fx-background-color: #f5c518;");
         title.getStyleClass().add("text-yellow");
         detail.getStyleClass().add("text-white");
@@ -46,25 +39,10 @@ public class MovieCell extends ListCell<Movie> {
         layout.spacingProperty().set(10);
         layout.alignmentProperty().set(javafx.geometry.Pos.CENTER_LEFT);
 
-        detailBtn.setOnMouseClicked(mouseEvent -> {
-            if (collapsedDetails) {
-                layout.getChildren().add(getDetails());
-                collapsedDetails = false;
-                detailBtn.setText("Hide Details");
-            } else {
-                layout.getChildren().remove(5);
-                collapsedDetails = true;
-                detailBtn.setText("Show Details");
-            }
-            setGraphic(layout);
-        });
-
-
-
         watchlistBtn.setOnMouseClicked(mouseEvent -> {
-            if (notAddedToWatchlist) {
+            if (AddedToWatchlist) {
                 //add movie to watchlist
-                notAddedToWatchlist = false;
+
                 watchlistBtn.setText("Added to Watchlist");
             }
         });
