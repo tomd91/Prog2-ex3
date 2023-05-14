@@ -1,40 +1,39 @@
 package at.ac.fhcampuswien.fhmdb;
 
-import at.ac.fhcampuswien.fhmdb.api.MovieAPI;
 import at.ac.fhcampuswien.fhmdb.database.WatchlistMovieEntity;
 import at.ac.fhcampuswien.fhmdb.database.WatchlistRepository;
-import at.ac.fhcampuswien.fhmdb.models.Genre;
-import at.ac.fhcampuswien.fhmdb.models.Movie;
-import at.ac.fhcampuswien.fhmdb.models.SortedState;
-import at.ac.fhcampuswien.fhmdb.ui.MovieCell;
 import at.ac.fhcampuswien.fhmdb.ui.MovieCellWatchlist;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class WatchListController {
+public class WatchListController implements Initializable {
 
     @FXML
-    public JFXListView movieListView;
+    public JFXListView watchListView;
 
-    private WatchlistRepository watchlistRepository = new WatchlistRepository();
+    public WatchlistRepository watchlistRepository = new WatchlistRepository();
 
     protected ObservableList<WatchlistMovieEntity> observableWatchlistMovies = FXCollections.observableArrayList();
-
-    public void initialize(){
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
         System.out.println("Watchlist Controller initialized!");
-        //initializeState();
-        //initializeLayout();
+        watchlistRepository.ContactRepository();
+        initializeState();
+        initializeLayout();
 
     }
 
     public void initializeLayout() {
-        movieListView.setItems(observableWatchlistMovies);   // set the items of the listview to the observable list
-        movieListView.setCellFactory(movieListView -> new MovieCellWatchlist()); // apply custom cells to the listview
+        watchListView.setItems(observableWatchlistMovies);   // set the items of the listview to the observable list
+        watchListView.setCellFactory(movieListView -> new MovieCellWatchlist()); // apply custom cells to the listview
 
     }
 

@@ -51,11 +51,13 @@ public class MovieCellWatchlist extends ListCell<WatchlistMovieEntity> {
 
         removeBtn.setOnMouseClicked(mouseEvent -> {
             //remove movie from watchlist
+
             try {
                 watchlistRepository.removeWatchlistMovieEntities(getItem());
             } catch (SQLException e) {
-                System.out.println("Movie was not removed");
+                throw new RuntimeException(e);
             }
+
             removeBtn.setText("removed");
 
         });
