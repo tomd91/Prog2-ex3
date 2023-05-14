@@ -25,7 +25,7 @@ public class WatchlistRepository {
         dao.delete(watchlistMovieEntity);
     }
 
-    public List<WatchlistMovieEntity> watchlistMovieEntities() throws SQLException {
+    public List<WatchlistMovieEntity> getAllWatchlistMovieEntities() throws SQLException {
         return dao.queryForAll();
     }
 
