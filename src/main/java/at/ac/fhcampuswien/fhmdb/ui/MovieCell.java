@@ -11,6 +11,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import java.sql.SQLException;
 import java.util.stream.Collectors;
 
 public class MovieCell extends ListCell<Movie> {
@@ -65,6 +66,12 @@ public class MovieCell extends ListCell<Movie> {
                 //add movie to watchlist
                 notAddedToWatchlist = false;
                 watchlistBtn.setText("Added to Watchlist");
+
+                try {
+                    watchlistRepository.addMovie(getItem());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
