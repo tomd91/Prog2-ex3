@@ -25,15 +25,15 @@
             <children>
                <HBox prefHeight="30.0" prefWidth="400.0" spacing="10.0">
                   <children>
-                     <Button mnemonicParsing="false" prefWidth="300.0" styleClass="background-yellow" text="Home">
+                     <JFXButton mnemonicParsing="false" fx:id="homeBtn" onAction="#homeBtnClicked" prefWidth="300.0" styleClass="background-yellow" text="Home">
                         <HBox.margin>
                            <Insets />
-                        </HBox.margin></Button>
-                     <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="300.0" styleClass="background-yellow" text="Watchlist" />
-                     <Button layoutX="62.0" layoutY="10.0" mnemonicParsing="false" prefWidth="300.0" styleClass="background-yellow" text="About">
+                        </HBox.margin></JFXButton>
+                     <JFXButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" fx:id="watchlistBtn" onAction="#watchlistBtnClicked" prefWidth="300.0" styleClass="background-yellow" text="Watchlist" />
+                     <JFXButton layoutX="62.0" layoutY="10.0" mnemonicParsing="false" fx:id="aboutBtn" onAction="#aboutBtnClicked" prefWidth="300.0" styleClass="background-yellow" text="About">
                         <HBox.margin>
                            <Insets />
-                        </HBox.margin></Button>
+                        </HBox.margin></JFXButton>
                   </children>
                   <padding>
                      <Insets left="20.0" />

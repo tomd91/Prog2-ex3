@@ -42,6 +42,15 @@ public class HomeController implements Initializable {
     @FXML
     public JFXButton sortBtn;
 
+    @FXML
+    public JFXButton homeBtn;
+
+    @FXML
+    public JFXButton watchlistBtn;
+
+    @FXML
+    public JFXButton aboutBtn;
+
     public List<Movie> allMovies;
 
     protected ObservableList<Movie> observableMovies = FXCollections.observableArrayList();
@@ -242,5 +251,20 @@ public class HomeController implements Initializable {
         return movies.stream()
                 .filter(movie -> movie.getReleaseYear() >= startYear && movie.getReleaseYear() <= endYear)
                 .collect(Collectors.toList());
+    }
+
+    public void homeBtnClicked(ActionEvent actionEvent) {
+
+        System.out.println("home button clicked");
+    }
+
+    public void watchlistBtnClicked(ActionEvent actionEvent) {
+
+        System.out.println("watchlist button clicked");
+    }
+
+    public void aboutBtnClicked(ActionEvent actionEvent) {
+
+        System.out.println("about button clicked");
     }
 }

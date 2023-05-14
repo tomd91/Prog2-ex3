@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="at.ac.fhcampuswien.fhmdb.AboutView"
+            fx:controller="at.ac.fhcampuswien.fhmdb.AboutViewController"
             prefHeight="400.0" prefWidth="600.0">
 
     <Label text="About"></Label>
