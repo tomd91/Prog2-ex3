@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.fhmdb.ui;
 
 import at.ac.fhcampuswien.fhmdb.database.WatchlistMovieEntity;
 import at.ac.fhcampuswien.fhmdb.database.WatchlistRepository;
+import at.ac.fhcampuswien.fhmdb.exceptions.DatabaseException;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import com.jfoenix.controls.JFXButton;
 import javafx.geometry.Insets;
@@ -30,7 +31,7 @@ public class MovieCellWatchlist extends ListCell<WatchlistMovieEntity> {
 
 
 
-    public MovieCellWatchlist() {
+    public MovieCellWatchlist() throws DatabaseException {
         super();
         watchlistRepository.ContactRepository();
 
@@ -54,7 +55,7 @@ public class MovieCellWatchlist extends ListCell<WatchlistMovieEntity> {
 
             try {
                 watchlistRepository.removeWatchlistMovieEntities(getItem());
-            } catch (SQLException e) {
+            } catch (DatabaseException e) {
                 throw new RuntimeException(e);
             }
 
