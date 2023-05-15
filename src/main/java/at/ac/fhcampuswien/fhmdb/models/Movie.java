@@ -155,6 +155,8 @@ public class Movie {
     }
 
     public String getGenresAssString() {
-        return "mach ich morgen";
+        StringBuilder sb = new StringBuilder();
+        genres.forEach((genre) -> sb.append(genre.toString()).append(","));
+        return sb.toString();
     }
 }
