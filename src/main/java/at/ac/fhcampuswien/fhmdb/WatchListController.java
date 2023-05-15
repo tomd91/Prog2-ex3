@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.fhmdb;
 
 import at.ac.fhcampuswien.fhmdb.database.WatchlistMovieEntity;
 import at.ac.fhcampuswien.fhmdb.database.WatchlistRepository;
+import at.ac.fhcampuswien.fhmdb.exceptions.DatabaseException;
 import at.ac.fhcampuswien.fhmdb.ui.MovieCellWatchlist;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
@@ -25,7 +26,11 @@ public class WatchListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         System.out.println("Watchlist Controller initialized!");
-        watchlistRepository.ContactRepository();
+        try {
+            watchlistRepository.ContactRepository();
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
         initializeState();
         initializeLayout();
 
@@ -33,7 +38,13 @@ public class WatchListController implements Initializable {
 
     public void initializeLayout() {
         watchListView.setItems(observableWatchlistMovies);   // set the items of the listview to the observable list
-        watchListView.setCellFactory(movieListView -> new MovieCellWatchlist()); // apply custom cells to the listview
+        watchListView.setCellFactory(movieListView -> {
+            try {
+                return new MovieCellWatchlist();
+            } catch (DatabaseException e) {
+                throw new RuntimeException(e);
+            }
+        }); // apply custom cells to the listview
 
     }
 
